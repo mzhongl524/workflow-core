@@ -34,10 +34,11 @@ namespace WorkflowCore.UnitTests.Services
             Options = new WorkflowOptions(A.Fake<IServiceCollection>());
 
             A.CallTo(() => DateTimeProvider.Now).Returns(DateTime.Now);
+            A.CallTo(() => DateTimeProvider.UtcNow).Returns(DateTime.UtcNow);
 
             //config logging
             var loggerFactory = new LoggerFactory();
-            loggerFactory.AddConsole(LogLevel.Debug);            
+            //loggerFactory.AddConsole(LogLevel.Debug);            
 
             Subject = new ExecutionResultProcessor(PointerFactory, DateTimeProvider, EventHub, ErrorHandlers, Options, loggerFactory);
         }

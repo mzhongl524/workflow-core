@@ -48,10 +48,11 @@ namespace WorkflowCore.UnitTests.Services
             A.CallTo(() => scope.ServiceProvider).Returns(ServiceProvider);
 
             A.CallTo(() => DateTimeProvider.Now).Returns(DateTime.Now);
+            A.CallTo(() => DateTimeProvider.UtcNow).Returns(DateTime.UtcNow);
 
             //config logging
             var loggerFactory = new LoggerFactory();
-            loggerFactory.AddConsole(LogLevel.Debug);            
+            //loggerFactory.AddConsole(LogLevel.Debug);            
 
             Subject = new WorkflowExecutor(Registry, ServiceProvider, ScopeProvider, DateTimeProvider, ResultProcesser, EventHub, CancellationProcessor, Options, loggerFactory);
         }
